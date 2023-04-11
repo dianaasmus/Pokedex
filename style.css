@@ -2,6 +2,12 @@ body {
     margin: 0;
     background-color: white;
     font-family: sans-serif;
+    color: white;
+    background-image: url(img/body-bg.jpg);
+    width: 100%;
+    background-size: cover;
+    /* object-fit: contain; */
+    /* background-repeat: no-repeat; */
 }
 
 #poke-info {
@@ -28,12 +34,13 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
-    background-color: #efefef;
+    /* background-color: black; */
 }
 
 h1 {
     padding-left: 0;
     font-size: 24px;
+    color: white;
 }
 
 header img {
@@ -48,11 +55,15 @@ header img {
 
 .card {
     position: relative;
-    background-color: red;
-    margin: 10px;
+    /* background-color: red; */
+    margin: 20px;
     width: 250px;
     height: 200px;
     border-radius: 20px;
+}
+
+h3 {
+    color: white;
 }
 
 .poke-name-number {
