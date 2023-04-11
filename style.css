@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    background-color: white;
+    font-family: sans-serif;
+}
+
+#poke-info {
+    background-color: rebeccapurple;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 60%;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+#poke-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -300px;
+    height: 600px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    background-color: #efefef;
+}
+
+h1 {
+    padding-left: 0;
+    font-size: 24px;
+}
+
+header img {
+    height: 24px;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    position: relative;
+    background-color: red;
+    margin: 10px;
+    width: 250px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+.poke-name-number {
+    display: flex;
+    justify-content: space-around;
+}
+
+.poke-img {
+    position: absolute;
+    right: 40px;
+}
