@@ -2,6 +2,48 @@
 let currentPokemon;
 let first100 = 100;
 
+// ================================================================== search 
+function openInput() {
+    document.getElementById('input').classList.remove('d-none');
+    document.getElementById('search-icon').classList.add('d-none');
+}
+
+function closeInput() {
+    document.getElementById('input').classList.add('d-none');
+    document.getElementById('search-icon').classList.remove('d-none');
+}
+
+function getInputFromMenu() {
+    const searchInput = document.getElementById('search-icon');
+    const searchValue = searchInput.value;
+    return searchValue;
+}
+
+function enter(event) {
+    if (event.keyCode === 13) {
+        let searchInput = getInputFromMenu();
+        search = searchInput;
+
+        document.getElementById('cards').innerHTML = '';
+
+        generateSearchedCard(search);
+    }
+}
+
+function generateSearchedCard(search) {
+
+    for (let i = 0; i < first100; i++) {
+        let pokeName = allPokeJSON['results'][i]['name'];
+        let typeOne = pokeJSON['types'][0]['type']['name'];
+        let pokeImg = pokeJSON['sprites']['front_default'];
+
+        if (pokeName.icludes(search)) {
+            document.getElementById('cards').innerHTML += showCards(pokeName, typeOne, pokeImg, i);
+        }
+    }
+}
+
+// ================================================================== load Pokemon 
 async function loadPokemon() {
     let url = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
     let response = await fetch(url);
@@ -17,31 +59,30 @@ async function renderPokemon(allPokeJSON) {
 
         let pokeResponse = await fetch(pokeURL);
         pokeJSON = await pokeResponse.json();
-        console.log('Loaded Pokemon', pokeJSON);
+        // console.log('Loaded Pokemon', pokeJSON);
 
-        let pokeNumber = pokeJSON['id'];
         let pokeImg = pokeJSON['sprites']['front_default'];
         let typeOne = pokeJSON['types'][0]['type']['name'];
 
-        showCards(pokeName, pokeNumber, typeOne, pokeImg, i);
+        document.getElementById('cards').innerHTML += showCards(pokeName, typeOne, pokeImg, i);
         addBgColor(typeOne, i);
 
         if (pokeJSON['types'][1]) {
             let typeTwo = pokeJSON['types'][1]['type']['name'];
             document.getElementById(`type-two${i}`).innerHTML = typeTwo;
+            document.getElementById(`type-two${i}`).classList.add('type-style');
         }
     }
 }
 
-function showCards(pokeName, pokeNumber, typeOne, pokeImg, i) {
-    document.getElementById('cards').innerHTML += `<div class="card" id="card${i}">
+function showCards(pokeName, typeOne, pokeImg, i) {
+    return `<div onmouseover="scaleUp(this)" onmouseout="scaleDown(this)" class="card" id="card${i}">
             <div class="poke-name-number">
                 <h3>${pokeName}</h3>
-                <h4>#${pokeNumber}</h4>
             </div>
             <div class="type-img">
                 <div>
-                    <p>${typeOne}</p>
+                    <p class="type-style">${typeOne}</p>
                     <p id="type-two${i}"></p>
                 </div>
                 <img src="${pokeImg}" class="poke-img">
@@ -49,10 +90,20 @@ function showCards(pokeName, pokeNumber, typeOne, pokeImg, i) {
         </div>`;
 }
 
+// ================================================================== Hover
+function scaleUp(x) {
+    x.style.transform = "scale(1.05)";
+}
+
+function scaleDown(x) {
+    x.style.transform = "scale(1)";
+}
+
+// ================================================================== Card Color 
 function addBgColor(type, i) {
     if (type == 'grass') {
         document.getElementById(`card${i}`).style.backgroundColor = "rgba(73, 207, 174, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(73, 207, 174)"; 
+        document.getElementById(`card${i}`).style.border = "4px solid rgb(73, 207, 174)";
     }
     if (type == 'fire') {
         document.getElementById(`card${i}`).style.backgroundColor = "rgba(252, 108, 110, 0.8)";

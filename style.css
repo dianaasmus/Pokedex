@@ -6,27 +6,6 @@ body {
     background-image: url(img/body-bg.jpg);
     width: 100%;
     background-size: cover;
-    /* object-fit: contain; */
-    /* background-repeat: no-repeat; */
-}
-
-#poke-info {
-    background-color: rebeccapurple;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 60%;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-}
-
-#poke-img {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -300px;
-    height: 600px;
 }
 
 header {
@@ -34,18 +13,48 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
-    /* background-color: black; */
 }
 
 h1 {
     padding-left: 0;
-    font-size: 24px;
+    font-size: 30px;
     color: white;
 }
 
-header img {
+#search-icon {
     height: 24px;
+    cursor: pointer;
 }
+
+#input {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+input {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 7px;
+    padding: 5px;
+    width: 230px;
+    color: white;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+.close-img {
+    position: absolute;
+    right: 10px;
+}
+
+
+.d-none {
+    display: none !important;
+}
+
 
 #cards {
     display: flex;
@@ -55,15 +64,11 @@ header img {
 
 .card {
     position: relative;
-    /* background-color: red; */
     margin: 20px;
     width: 250px;
     height: 200px;
     border-radius: 20px;
-}
-
-h3 {
-    color: white;
+    cursor: pointer;
 }
 
 .poke-name-number {
@@ -71,7 +76,21 @@ h3 {
     justify-content: space-around;
 }
 
+h3 {
+    font-size: 25px;
+}
+
+.type-style {
+    margin-left: 25px;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    max-width: fit-content;
+    font-size: 15px;
+}
+
 .poke-img {
     position: absolute;
     right: 40px;
+    bottom: 10px;
 }

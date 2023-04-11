@@ -15,7 +15,11 @@
 
     <header>
         <h1>Pokédex</h1>
-        <img src="img/search.png">
+        <img src="img/search.png" onclick="openInput()" id="search-icon">
+        <div id="input" class="d-none">
+            <input type="text" onkeydown="enter(event)">
+            <img src="img/close.png" class="close-img" onclick="closeInput()">
+        </div>
     </header>
 
     <div id="cards">
