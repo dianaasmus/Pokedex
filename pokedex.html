@@ -11,20 +11,20 @@
     <script src="script.js"></script>
 </head>
 
-<body onload="loadPokemon()">
+<body onload="loadPokemon()" id="body">
 
     <header>
         <h1>Pokédex</h1>
         <img src="img/search.png" onclick="openInput()" id="search-icon">
         <div id="input" class="d-none">
-            <input type="text" onkeydown="enter(event)">
+            <input type="text" onkeydown="enter(event)" placeholder="suche...">
             <img src="img/close.png" class="close-img" onclick="closeInput()">
         </div>
     </header>
 
-    <div id="cards">
+    <div id="cards"></div>
 
-    </div>
+    <div id="card-container"></div>
 </body>
 
 </html>

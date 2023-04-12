@@ -94,3 +94,70 @@ h3 {
     right: 40px;
     bottom: 10px;
 }
+
+ /* ================================================================== single Card  */
+#single-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(39, 33, 44, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.open-cards {
+    border-radius: 30px;
+    width: 450px;
+    height: 550px;
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 20px 0 20px;
+}
+
+.card-icon {
+    cursor: pointer;
+}
+
+#poke-details {
+    background-color: rgb(22, 25, 26);
+    width: 450px;
+    height: 400px;
+    margin-top: 150px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.poke-img-card {
+    width: 230px;
+    margin-top: -115px;
+}
+
+.poke-name {
+    margin-top: -71px;
+}
+
+h5 {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.card-type {
+    display: flex;
+}
+
+.type-style-card {
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    max-width: fit-content;
+    font-size: 15px;
+}

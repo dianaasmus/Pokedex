@@ -22,23 +22,22 @@ function getInputFromMenu() {
 function enter(event) {
     if (event.keyCode === 13) {
         let searchInput = getInputFromMenu();
-        search = searchInput;
+        search = searchInput.toLowerCase();
 
         document.getElementById('cards').innerHTML = '';
 
-        generateSearchedCard(search);
+        generateSearchedCard();
     }
 }
 
-function generateSearchedCard(search) {
-
+function generateSearchedCard() {
     for (let i = 0; i < first100; i++) {
         let pokeName = allPokeJSON['results'][i]['name'];
         let typeOne = pokeJSON['types'][0]['type']['name'];
         let pokeImg = pokeJSON['sprites']['front_default'];
 
-        if (pokeName.icludes(search)) {
-            document.getElementById('cards').innerHTML += showCards(pokeName, typeOne, pokeImg, i);
+        if (pokeName.toLowerCase().icludes(search)) {
+            showCards(pokeName, typeOne, pokeImg, i);
         }
     }
 }
@@ -48,7 +47,6 @@ async function loadPokemon() {
     let url = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
     let response = await fetch(url);
     allPokeJSON = await response.json();
-    // console.log('Loaded JSON', allPokeJSON);
     renderPokemon(allPokeJSON);
 }
 
@@ -59,12 +57,11 @@ async function renderPokemon(allPokeJSON) {
 
         let pokeResponse = await fetch(pokeURL);
         pokeJSON = await pokeResponse.json();
-        // console.log('Loaded Pokemon', pokeJSON);
 
         let pokeImg = pokeJSON['sprites']['front_default'];
         let typeOne = pokeJSON['types'][0]['type']['name'];
 
-        document.getElementById('cards').innerHTML += showCards(pokeName, typeOne, pokeImg, i);
+        showCards(pokeName, typeOne, pokeImg, i);
         addBgColor(typeOne, i);
 
         if (pokeJSON['types'][1]) {
@@ -76,7 +73,7 @@ async function renderPokemon(allPokeJSON) {
 }
 
 function showCards(pokeName, typeOne, pokeImg, i) {
-    return `<div onmouseover="scaleUp(this)" onmouseout="scaleDown(this)" class="card" id="card${i}">
+    document.getElementById('cards').innerHTML += `<div onmouseover="scaleUp(this)" onmouseout="scaleDown(this)" class="card" id="card${i}" onclick="openCard('${pokeName}', '${pokeImg}', '${typeOne}', ${i})">
             <div class="poke-name-number">
                 <h3>${pokeName}</h3>
             </div>
@@ -90,6 +87,9 @@ function showCards(pokeName, typeOne, pokeImg, i) {
         </div>`;
 }
 
+function addTypeTwo() {
+
+}
 // ================================================================== Hover
 function scaleUp(x) {
     x.style.transform = "scale(1.05)";
@@ -101,76 +101,184 @@ function scaleDown(x) {
 
 // ================================================================== Card Color 
 function addBgColor(type, i) {
+    let card = document.getElementById(`card${i}`);
+
     if (type == 'grass') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(73, 207, 174, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(73, 207, 174)";
+        card.style.backgroundColor = "rgba(73, 207, 174, 0.8)";
+        card.style.border = "4px solid rgb(73, 207, 174)";
     }
     if (type == 'fire') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(252, 108, 110, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(252, 108, 110)";
+        card.style.backgroundColor = "rgba(252, 108, 110, 0.8)";
+        card.style.border = "4px solid rgb(252, 108, 110)";
     }
     if (type == 'water') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(132, 199, 254, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(132, 199, 254)";
+        card.style.backgroundColor = "rgba(132, 199, 254, 0.8)";
+        card.style.border = "4px solid rgb(132, 199, 254)";
     }
     if (type == 'electric') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(254, 218, 120, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(254, 218, 120)";
+        card.style.backgroundColor = "rgba(254, 218, 120, 0.8)";
+        card.style.border = "4px solid rgb(254, 218, 120)";
     }
     if (type == 'normal') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(183, 183, 170, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(183, 183, 170)";
+        card.style.backgroundColor = "rgba(183, 183, 170, 0.8)";
+        card.style.border = "4px solid rgb(183, 183, 170)";
     }
     if (type == 'fighting') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(177, 82, 71, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(177, 82, 71)";
+        card.style.backgroundColor = "rgba(177, 82, 71, 0.8)";
+        card.style.border = "4px solid rgb(177, 82, 71)";
     }
     if (type == 'flying') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(121, 168, 241, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(121, 168, 241)";
+        card.style.backgroundColor = "rgba(121, 168, 241, 0.8)";
+        card.style.border = "4px solid rgb(121, 168, 241)";
     }
     if (type == 'poison') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(156, 88, 148, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(156, 88, 148)";
+        card.style.backgroundColor = "rgba(156, 88, 148, 0.8)";
+        card.style.border = "4px solid rgb(156, 88, 148)";
     }
     if (type == 'ground') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(236, 206, 89, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(236, 206, 89)";
+        card.style.backgroundColor = "rgba(236, 206, 89, 0.8)";
+        card.style.border = "4px solid rgb(236, 206, 89)";
     }
     if (type == 'rock') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(205, 189, 114, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(205, 189, 114)";
+        card.style.backgroundColor = "rgba(205, 189, 114, 0.8)";
+        card.style.border = "4px solid rgb(205, 189, 114)";
     }
     if (type == 'bug') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(196, 207, 34, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(196, 207, 34)";
+        card.style.backgroundColor = "rgba(196, 207, 34, 0.8)";
+        card.style.border = "4px solid rgb(196, 207, 34)";
     }
     if (type == 'ghost') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(116, 114, 213, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(116, 114, 213)";
+        card.style.backgroundColor = "rgba(116, 114, 213, 0.8)";
+        card.style.border = "4px solid rgb(116, 114, 213)";
     }
     if (type == 'psychic') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(249, 95, 173, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(249, 95, 173)";
+        card.style.backgroundColor = "rgba(249, 95, 173, 0.8)";
+        card.style.border = "4px solid rgb(249, 95, 173)";
     }
     if (type == 'ice') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(150, 242, 255, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgba(150, 242, 255, 0.8)";
+        card.style.backgroundColor = "rgba(150, 242, 255, 0.8)";
+        card.style.border = "4px solid rgba(150, 242, 255, 0.8)";
     }
     if (type == 'dragon') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(117, 103, 201, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgba(117, 103, 201, 0.8)";
+        card.style.backgroundColor = "rgba(117, 103, 201, 0.8)";
+        card.style.border = "4px solid rgba(117, 103, 201, 0.8)";
     }
     if (type == 'dark') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(143, 106, 88, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(143, 106, 88)";
+        card.style.backgroundColor = "rgba(143, 106, 88, 0.8)";
+        card.style.border = "4px solid rgb(143, 106, 88)";
     }
     if (type == 'steel') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(196, 195, 217, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(196, 195, 217)";
+        card.style.backgroundColor = "rgba(196, 195, 217, 0.8)";
+        card.style.border = "4px solid rgb(196, 195, 217)";
     }
     if (type == 'fairy') {
-        document.getElementById(`card${i}`).style.backgroundColor = "rgba(249, 177, 254, 0.8)";
-        document.getElementById(`card${i}`).style.border = "4px solid rgb(249, 177, 254)";
+        card.style.backgroundColor = "rgba(249, 177, 254, 0.8)";
+        card.style.border = "4px solid rgb(249, 177, 254)";
     }
 }
+
+// ================================================================== Show Card
+function openCard(pokeName, pokeImg, typeOne, typeTwo, i) {
+    let cardContainer = document.getElementById('card-container');
+    let card = document.getElementById('single-card');
+
+    cardContainer.innerHTML = `
+   <div id="single-card">
+        <div id="open-cards${i}">
+            <div class="card-top">
+                <img src="img/close-card.png" class="card-icon" onclick="closeCard()">
+                <h4>#001</h4>
+                <img src="img/grey-heart.png" class="card-icon">
+            </div>
+            <div id="poke-details">
+                <img src="${pokeImg}" class="poke-img-card">
+                <div class="poke-name">
+                    <h5>${pokeName}</h5>
+                    <div class="card-type">
+                        <p class="type-style-card">${typeOne}</p>
+                        <p id="type-two-card${i}"></p>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+
+    if (typeTwo) {
+        // let typeTwo = pokeJSON['types'][1]['type']['name'];
+        document.getElementById(`type-two-card${i}`).innerHTML = typeTwo;
+        document.getElementById(`type-two-card${i}`).classList.add('type-style');
+    }
+
+    addCardBgColor(typeOne, i);
+}
+
+function addCardBgColor(type, i) {
+    let singlecard = document.getElementById(`open-cards${i}`);
+
+    if (type == 'grass') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(63, 121, 82)";
+    }
+    if (type == 'fire') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(252, 108, 110, 0.8)";
+    }
+    if (type == 'water') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(132, 199, 254, 0.8)";
+    }
+    if (type == 'electric') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(254, 218, 120, 0.8)";
+    }
+    if (type == 'normal') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(183, 183, 170, 0.8)";
+    }
+    if (type == 'fighting') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(177, 82, 71, 0.8)";
+    }
+    if (type == 'flying') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(121, 168, 241, 0.8)";
+    }
+    if (type == 'poison') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(156, 88, 148, 0.8)";
+    }
+    if (type == 'ground') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(236, 206, 89, 0.8)";
+    }
+    if (type == 'rock') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(205, 189, 114, 0.8)";
+    }
+    if (type == 'bug') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(196, 207, 34, 0.8)";
+    }
+    if (type == 'ghost') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(116, 114, 213, 0.8)";
+    }
+    if (type == 'psychic') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(249, 95, 173, 0.8)";
+    }
+    if (type == 'ice') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(150, 242, 255, 0.8)";
+    }
+    if (type == 'dragon') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(117, 103, 201, 0.8)";
+    }
+    if (type == 'dark') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(143, 106, 88, 0.8)";
+    }
+    if (type == 'steel') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(196, 195, 217, 0.8)";
+    }
+    if (type == 'fairy') {
+        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgba(249, 177, 254, 0.8)";
+    }
+
+    singlecard.classList.add('open-cards');
+}
+
+function closeCard() {
+    document.getElementById('card-container').innerHTML = '';
+}
+
+// ================================================================== add heart
