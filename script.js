@@ -1,6 +1,6 @@
 // let pokemonJson = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
-let currentPokemon;
-let first100 = 100;
+// let currentPokemon;
+let first100 = 20;
 
 // ================================================================== search 
 function openInput() {
@@ -47,6 +47,7 @@ async function loadPokemon() {
     let url = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
     let response = await fetch(url);
     allPokeJSON = await response.json();
+    // console.log(allPokeJSON);
     renderPokemon(allPokeJSON);
 }
 
@@ -54,7 +55,6 @@ async function renderPokemon(allPokeJSON) {
     for (let i = 0; i < first100; i++) {
         let pokeName = allPokeJSON['results'][i]['name'];
         let pokeURL = allPokeJSON['results'][i]['url'];
-
         let pokeResponse = await fetch(pokeURL);
         pokeJSON = await pokeResponse.json();
 
@@ -73,7 +73,7 @@ async function renderPokemon(allPokeJSON) {
 }
 
 function showCards(pokeName, typeOne, pokeImg, i) {
-    document.getElementById('cards').innerHTML += `<div onmouseover="scaleUp(this)" onmouseout="scaleDown(this)" class="card" id="card${i}" onclick="openCard('${pokeName}', '${pokeImg}', '${typeOne}', ${i})">
+    document.getElementById('cards').innerHTML += `<div onmouseover="scaleUp(this)" onmouseout="scaleDown(this)" class="card" id="card${i}" onclick="openCard(${i}, '${pokeName}', '${pokeImg}', '${typeOne}')">
             <div class="poke-name-number">
                 <h3>${pokeName}</h3>
             </div>
@@ -178,17 +178,19 @@ function addBgColor(type, i) {
 }
 
 // ================================================================== Show Card
-function openCard(pokeName, pokeImg, typeOne, typeTwo, i) {
+function openCard(i, pokeName, pokeImg, typeOne, typeTwo) {
     let cardContainer = document.getElementById('card-container');
-    let card = document.getElementById('single-card');
+    document.getElementById('body').classList.add('overflow');
 
     cardContainer.innerHTML = `
    <div id="single-card">
+    <img src="img/arrow-left.png" class="arrow" id="arrow-left">
         <div id="open-cards${i}">
             <div class="card-top">
                 <img src="img/close-card.png" class="card-icon" onclick="closeCard()">
-                <h4>#001</h4>
-                <img src="img/grey-heart.png" class="card-icon">
+                <h4 id="poke-number${i}"></h4>
+                <img src="img/grey-heart.png" class="card-icon" onclick="addHeart(${i})">
+                <img src="img/white-heart.png" class="card-icon heart d-none" id="heart${i}" onclick="removeHeart(${i})">
             </div>
             <div id="poke-details">
                 <img src="${pokeImg}" class="poke-img-card">
@@ -204,16 +206,16 @@ function openCard(pokeName, pokeImg, typeOne, typeTwo, i) {
                 </div>
             </div>
         </div>
+    <img src="img/arrow-right.png" class="arrow" id="arrow-left" onclick="next(${i})">
     </div>`;
 
-
     if (typeTwo) {
-        // let typeTwo = pokeJSON['types'][1]['type']['name'];
         document.getElementById(`type-two-card${i}`).innerHTML = typeTwo;
         document.getElementById(`type-two-card${i}`).classList.add('type-style');
     }
 
     addCardBgColor(typeOne, i);
+    addpokeNumber(i);
 }
 
 function addCardBgColor(type, i) {
@@ -277,8 +279,42 @@ function addCardBgColor(type, i) {
     singlecard.classList.add('open-cards');
 }
 
+function addpokeNumber(nr) {
+    let pokeNumberField = document.getElementById(`poke-number${nr}`);
+    let pokeNr = nr + 1;
+    // console.log(pokeNr);
+    if (pokeNr <= 9) {
+        pokeNumberField.innerHTML = `#00${pokeNr}`;
+    }
+    if (pokeNr > 9 && pokeNr <= 99) {
+        pokeNumberField.innerHTML = `#0${pokeNr}`;
+    }
+    if (pokeNr > 99) {
+        pokeNumberField.innerHTML = `#${pokeNr}`;
+    }
+}
+
 function closeCard() {
     document.getElementById('card-container').innerHTML = '';
+    document.getElementById('body').classList.remove('overflow');
 }
 
 // ================================================================== add heart
+function addHeart(i) {
+    document.getElementById(`heart${i}`).classList.remove('d-none');
+}
+
+function removeHeart(i) {
+    document.getElementById(`heart${i}`).classList.add('d-none');
+}
+
+// ================================================================== next / previous Pokemon 
+function next(i) {
+    // i++;
+
+    // if (i > 99) {
+    //     i = 0; 
+    // }
+    // openCard(i);
+}
+
