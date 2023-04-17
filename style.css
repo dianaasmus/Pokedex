@@ -83,7 +83,7 @@ h3 {
 
 .type-style {
     margin-left: 25px;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid white;
     border-radius: 10px;
     width: 50px;
@@ -107,10 +107,32 @@ h3 {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(39, 33, 44, 0.8);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    width: 530px;
+    height: 558px;
+}
+
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.close-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: ' ';
+    background-color: rgba(39, 33, 44, 0.8);
+
 }
 
 .overflow {
@@ -121,6 +143,10 @@ h3 {
     border-radius: 30px;
     width: 450px;
     height: 550px;
+}
+
+.z-index {
+    z-index: 1;
 }
 
 .card-top {
@@ -137,7 +163,7 @@ h3 {
 
 .heart {
     position: absolute;
-    right: 0;
+    left: 0;
 }
 
 .poke-details {
@@ -162,7 +188,8 @@ h3 {
 }
 
 .poke-img-card {
-    width: 230px;
+    height: 180px;
+    width: 180px;
     margin-top: -115px;
 }
 
@@ -173,6 +200,7 @@ h3 {
 h5 {
     font-size: 30px;
     margin-bottom: 0;
+    padding-top: 30px;
 }
 
 .card-type {

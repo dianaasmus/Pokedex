@@ -5,14 +5,14 @@ function openCard(i, pokeImg, typeOne) {
     document.getElementById('body').classList.add('overflow');
 
     cardContainer.innerHTML = `
+    <div onclick="closeCard()" class="close-container"></div>
    <div id="single-card">
     <img src="img/arrow-left.png" class="arrow" id="arrow-left" onclick="previous(${i}, ${pokeID}, '${pokemonName[i]}', '${typeOne}')">
-        <div id="open-cards${i}">
+        <div id="open-cards${i}" class="z-index">
             <div class="card-top">
-                <img src="img/close-card.png" class="card-icon" onclick="closeCard()">
-                <h4 id="poke-number${i}"></h4>
                 <img src="img/grey-heart.png" class="card-icon" onclick="addHeart(${i})">
                 <img src="img/white-heart.png" class="card-icon heart d-none" id="heart${i}" onclick="removeHeart(${i})">
+                <h4 id="poke-number${i}"></h4>
             </div>
         
             <div id="poke-details${i}">
@@ -28,9 +28,9 @@ function openCard(i, pokeImg, typeOne) {
                     </div>
                 </div>
             </div>
-
         </div>
     <img src="img/arrow-right.png" class="arrow" id="arrow-left" onclick="next(${i}, ${pokeID}, '${pokemonName[i]}', '${typeOne}')">
+
     </div>`;
 
     addCardBgColor(i, typeOne);
@@ -54,7 +54,7 @@ function scaleDownPokemon(x) {
 function showAbout(i, pokeImg, pokeName, typeOne) {
     document.getElementById(`poke-details${i}`).innerHTML = `
         <div class="poke-details-2">
-                <img src="${pokeImg}" class="poke-img-card" onclick="openCard(${i}, '${pokeImg}', '${typeOne}')">
+                <img src="${pokeImg}" class="poke-img-card" onclick="openCard(${i}, '${pokeImg}', '${typeOne}')" onmouseover="scaleUpPokemon(this)" onmouseout="scaleDownPokemon(this)">
                 <div class="poke-name">
                     <h5>${pokeName}</h5>
                 </div>
