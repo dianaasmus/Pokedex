@@ -36,7 +36,7 @@ input {
     background-color: transparent;
     border: 2px solid white;
     border-radius: 7px;
-    padding: 5px;
+    padding: 7px;
     width: 230px;
     color: white;
 }
@@ -45,11 +45,12 @@ textarea:focus, input:focus {
     outline: none;
 }
 
-.close-img {
+.search-img {
     position: absolute;
-    right: 10px;
+    right: 15px;
+    height: 15px;
+    cursor: pointer;
 }
-
 
 .d-none {
     display: none !important;
@@ -82,17 +83,21 @@ h3 {
 
 .type-style {
     margin-left: 25px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid white;
     border-radius: 10px;
-    max-width: fit-content;
+    width: 50px;
     font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .poke-img {
     position: absolute;
     right: 40px;
     bottom: 10px;
+    height: 90px;
 }
 
  /* ================================================================== single Card  */
@@ -135,11 +140,21 @@ h3 {
     right: 0;
 }
 
-#poke-details {
+.poke-details {
+    background-color: rgb(22, 25, 26);
+    margin-top: 248px;
+    height: 250px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.poke-details-2 {
     background-color: rgb(22, 25, 26);
     width: 450px;
     height: 400px;
-    margin-top: 150px;
+    margin-top: 98px;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
@@ -162,16 +177,32 @@ h5 {
 
 .card-type {
     display: flex;
+    padding-top: 20px;
+}
+
+#about {
+    padding-top: 20px;
+    width: 350px;
+    height: 185px;
+}
+
+.about-strengths {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .type-style-card {
-    padding: 5px;
+    padding: 10px;
     border: 1px solid white;
     border-radius: 10px;
-    max-width: fit-content;
+    width: 50px;
     font-size: 15px;
+    display: flex;
+    justify-content: center;
 }
+
 
 .arrow {
     height: 40px;
+    cursor: pointer;
 }

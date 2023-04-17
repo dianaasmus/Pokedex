@@ -6,19 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
-    <link rel="icon" href="img/circle-dashed.png">
+    <link rel="icon" href="img/pokemon.ball.png">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="allPokemon.js"></script>
+    <script src="rest.js"></script>
 </head>
 
-<body onload="loadPokemon()" id="body">
+<body onload="init()" id="body">
 
     <header>
         <h1>Pokédex</h1>
-        <img src="img/search.png" onclick="openInput()" id="search-icon">
-        <div id="input" class="d-none">
-            <input type="text" onkeydown="enter(event)" placeholder="suche...">
-            <img src="img/close.png" class="close-img" onclick="closeInput()">
+        <div id="input">
+            <input type="text"  placeholder="suche..." id="search">
+            <img src="img/search.png" class="search-img" onclick="searchPokemon()">
         </div>
     </header>
 
