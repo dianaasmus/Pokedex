@@ -234,3 +234,27 @@ h5 {
     height: 40px;
     cursor: pointer;
 }
+
+/* about  */
+.about-text {
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.about {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+.about-text:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.about-field {
+    background-color: rgba(255, 255, 255, 0.05);
+    height: 200px;
+    border-radius: 15px;
+}

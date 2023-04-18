@@ -4,6 +4,8 @@ let pokeID = [];
 let currentPokemon;
 let showTwenty = 20;
 let pokemonName = [];
+let pokeImgs = [];
+let typeOneS = [];
 
 
 // load Pokemon Cards
@@ -24,15 +26,15 @@ async function renderPokemonInfo(pokedexJson) {
 
         singlePokemonJSON = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
         let urlResponse = await fetch(singlePokemonJSON);
-        singlePokemonJson = await urlResponse.json();
-        pokemon.push(singlePokemonJson);
+        currentPokemon = await urlResponse.json();
+        pokemon.push(currentPokemon);
 
         renderPokemon(i);
     }
 }
 
 async function renderPokemon(i) {
-    let { pokeId, pokeImg, typeOne } = loadVariables(i);
+    let { pokeImg, typeOne } = loadVariables(i);
     showCards(i, pokeImg, typeOne);
     addBgColor(typeOne, i);
     if (typeTwoExists(i)) {
@@ -44,8 +46,10 @@ function loadVariables(i) {
     let pokeId = pokemon[i]['id'];
     pokeID.push(pokeId);
     let pokeImg = pokemon[i]['sprites']['other']['official-artwork']['front_default'];
+    pokeImgs.push(pokeImg);
     let typeOne = pokemon[i]['types'][0]['type']['name'];
-    return { pokeId, pokeImg, typeOne };
+    typeOneS.push(typeOne);
+    return { pokeImg, typeOne };
 }
 
 function typeTwoExists(i) {
