@@ -1,10 +1,8 @@
 // ================================================================== Show Card
 function openCard(i, pokeImg, typeOne) {
-    currentPokemon = i;
-
     let cardContainer = document.getElementById('card-container');
     document.getElementById('body').classList.add('overflow');
-    cardContainer.innerHTML = addCardContainer(currentPokemon, pokeID, pokemonName, typeOne, pokeImg);
+    cardContainer.innerHTML = addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg);
     addCardBgColor(i, typeOne);
     addpokeNumber(i);
     if (typeTwoExists(i)) {
@@ -59,7 +57,7 @@ function showAbout(i, pokeImg, pokeName, typeOne) {
                 </div>
                 <div id="about">
                     <div class="about-strengths">
-                        <div class="about-text about" id="about-text${i}" onclick="showAboutPokemon(${i})">ABOUT</div>
+                        <div class="about-text about" id="about-text${i}" onclick="generateAboutInfos(${i})">ABOUT</div>
                         <div class="about-text" id="strengths-text${i}" onclick="showStrengthsPokemon(${i})">STRENGTHS</div>
                     </div>
                     <div class="about-field" id="about-strengths-field${i}"></div>
@@ -85,9 +83,9 @@ function scaleDown(x) {
 }
 
 // ================================================================== about / strengths 
-function showAboutPokemon(i, height, weight, ability) {
+function showAboutPokemon(i, height, weight, ability, habitat) {
     document.getElementById(`strengths-text${i}`).style.backgroundColor = "";
-    document.getElementById(`about-strengths-field${i}`).innerHTML = addAboutContent(i, height, weight, ability);
+    document.getElementById(`about-strengths-field${i}`).innerHTML = addAboutContent(i, height, weight, ability, habitat);
     document.getElementById(`about-text${i}`).style.backgroundColor = "rgba(255, 255, 255, 0.05)";
 }
 
@@ -98,31 +96,29 @@ function showStrengthsPokemon(i) {
     document.getElementById(`strengths-text${i}`).style.backgroundColor = "rgba(255, 255, 255, 0.05)";
 }
 
-function generateAboutInfos(i) {
+async function generateAboutInfos(i) {
     let height = pokemon[i]['height'];
     let weight = pokemon[i]['weight'];
     let ability = pokemon[i]['abilities'][0]['ability']['name'];
-    setEffect(i);
-    // console.log(pokemonEffect);
-    showAboutPokemon(i, height, weight, ability);
+    let habitat = await getHabitat(i);
+    showAboutPokemon(i, height, weight, ability, habitat);
 }
 
-async function setEffect(i) {
-    effect = pokemon[i]['abilities'][0]['ability']['url'];
-    let urlResponse = await fetch(effect);
-    effectJson = await urlResponse.json();
-    pokemonEffect = effectJson['effect_entries'][0]['effect'];
-    pokemonEffects.push(pokemonEffect);
+async function getHabitat(i) {
+    species = pokemon[i]['species']['url'];
+    let urlResponse = await fetch(species);
+    let speciesJson = await urlResponse.json();
+    let habitat = await speciesJson['habitat']['name'];
+    return habitat;
 }
 
-function addAboutContent(i, height, weight, ability) {
+function addAboutContent(i, height, weight, ability, habitat) {
     return `
         <div class="about-filled-content">
             <p>Height:<span>${height}0 cm</span></p>
             <p>Weight:<span>${weight}00 g</span></p>
             <p>Ability:<span>${ability}</span></p>
-            <p>Effect:</p>
-            <p>${pokemonEffects[i]}</p>
+            <p>Habitat:<span>${habitat}</span></p>
         </div>
     `;
 }

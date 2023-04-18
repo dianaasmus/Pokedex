@@ -6,7 +6,6 @@ let showTwenty = 20;
 let pokemonName = [];
 let pokeImgs = [];
 let typeOneS = [];
-let pokemonEffects = [];
 
 
 // load Pokemon Cards
