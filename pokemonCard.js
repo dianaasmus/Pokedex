@@ -62,10 +62,11 @@ function showAbout(i, pokeImg, pokeName, typeOne) {
                         <div class="about-text about" id="about-text${i}" onclick="showAboutPokemon(${i})">ABOUT</div>
                         <div class="about-text" id="strengths-text${i}" onclick="showStrengthsPokemon(${i})">STRENGTHS</div>
                     </div>
-                    <div class="about-field" id="about-strengths-field${i}">about</div>
+                    <div class="about-field" id="about-strengths-field${i}"></div>
                 </div>
             </div>
     `;
+    generateAboutInfos(i);
 }
 
 function renderTypeTwoInCard(i) {
@@ -84,9 +85,9 @@ function scaleDown(x) {
 }
 
 // ================================================================== about / strengths 
-function showAboutPokemon(i) {
+function showAboutPokemon(i, height, weight, ability) {
     document.getElementById(`strengths-text${i}`).style.backgroundColor = "";
-    document.getElementById(`about-strengths-field${i}`).innerHTML = 'about';
+    document.getElementById(`about-strengths-field${i}`).innerHTML = addAboutContent(i, height, weight, ability);
     document.getElementById(`about-text${i}`).style.backgroundColor = "rgba(255, 255, 255, 0.05)";
 }
 
@@ -95,6 +96,35 @@ function showStrengthsPokemon(i) {
     document.getElementById(`about-text${i}`).classList.remove('about');
     document.getElementById(`about-strengths-field${i}`).innerHTML = 'strengths';
     document.getElementById(`strengths-text${i}`).style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+}
+
+function generateAboutInfos(i) {
+    let height = pokemon[i]['height'];
+    let weight = pokemon[i]['weight'];
+    let ability = pokemon[i]['abilities'][0]['ability']['name'];
+    setEffect(i);
+    // console.log(pokemonEffect);
+    showAboutPokemon(i, height, weight, ability);
+}
+
+async function setEffect(i) {
+    effect = pokemon[i]['abilities'][0]['ability']['url'];
+    let urlResponse = await fetch(effect);
+    effectJson = await urlResponse.json();
+    pokemonEffect = effectJson['effect_entries'][0]['effect'];
+    pokemonEffects.push(pokemonEffect);
+}
+
+function addAboutContent(i, height, weight, ability) {
+    return `
+        <div class="about-filled-content">
+            <p>Height:<span>${height}0 cm</span></p>
+            <p>Weight:<span>${weight}00 g</span></p>
+            <p>Ability:<span>${ability}</span></p>
+            <p>Effect:</p>
+            <p>${pokemonEffects[i]}</p>
+        </div>
+    `;
 }
 
 // ================================================================== Color 
@@ -163,15 +193,17 @@ function addpokeNumber(i) {
     let pokeNumberField = document.getElementById(`poke-number${i}`);
 
     if (pokeID[i] <= 9) {
-        pokeNumberField.innerHTML = `#00${pokeID[i]}`;
+        pokeNumberField.innerHTML = `#000${pokeID[i]}`;
     }
     if (pokeID[i] > 9 && pokeID[i] <= 99) {
-        pokeNumberField.innerHTML = `#0${pokeID[i]}`;
+        pokeNumberField.innerHTML = `#00${pokeID[i]}`;
     }
     if (pokeID[i] > 99) {
+        pokeNumberField.innerHTML = `#0${pokeID[i]}`;
+    }
+    if (pokeID[i] > 999) {
         pokeNumberField.innerHTML = `#${pokeID[i]}`;
     }
-
 }
 
 function closeCard() {

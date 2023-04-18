@@ -248,7 +248,6 @@ h5 {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-
 .about-text:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
@@ -257,4 +256,12 @@ h5 {
     background-color: rgba(255, 255, 255, 0.05);
     height: 200px;
     border-radius: 15px;
+    padding: 5px 20px 5px 20px;
+}
+
+.about-filled-content p {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 35px;
+    text-align: left;
 }
