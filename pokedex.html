@@ -8,7 +8,7 @@
     <title>Pokédex</title>
     <link rel="icon" href="img/pokeball.png">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="allPokemon.js"></script>
     <script src="pokemonCard.js"></script>
     <script src="pokdexDetails.js"></script>
@@ -19,15 +19,22 @@
     <header>
         <h1>Pokédex</h1>
         <div id="input">
-            <input type="text" placeholder="suche..." id="search">
-            <img src="img/search.png" class="search-img" onclick="searchPokemon()">
+            <input type="text" placeholder="suche..." id="search" onkeydown="enter(event)">
+            <img src="img/close.png" class="input-img" onclick="emptyInput()">
         </div>
     </header>
 
     <div id="cards"></div>
 
     <div id="card-container"></div>
-    <div class="button"><button id="load-more-btn" onclick="loadMore()">load more</button></div>
+    <div class="button"><button id="load-more-btn" onclick="loadMore()" enable>load more</button></div>
+
+    <!-- <footer>
+        <div>
+            <a href="https://github.com/dianaasmus/Pokedex" target="_blank">Github</a> |
+            <a href="https://pokeapi.co/" target="_blank">PokeApi</a>
+        </div>
+    </footer> -->
 </body>
 
 </html>

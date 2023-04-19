@@ -1,29 +1,50 @@
 // ================================================================== search 
-function searchPokemon() {
-    let input = document.getElementById('search').value;
-    input = input.toLowerCase();
+function enter(event) {
+    if (event.keyCode === 13) {
+        setSearchVaribles();
+    }
+}
 
-    for (let i = 0; i < first100; i++) {
-        let pokeName = allPokeJSON['results'][i]['name'];
-        let typeOne = pokeJSON['types'][0]['type']['name'];
-        let pokeImg = pokeJSON['sprites']['front_default'];
+function getInput() {
+    const searchInput = document.getElementById('search');
+    const searchValue = searchInput.value.trim();
+    return searchValue;
+}
 
-        if (pokeName.toLowerCase().includes(input)) {
-            document.getElementById('cards').innerHTML = '';
-            showCards(pokeName, typeOne, pokeImg, i);
+function setSearchVaribles() {
+    let searchInput = getInput();
+    document.getElementById('cards').innerHTML = '';
+    search = searchInput.toLowerCase();
+    filterSearchedPokemon(search);
+}
+
+async function filterSearchedPokemon(search) {
+    for (let i = 0; i < amountsShowing; i++) {
+        let searchedName = await pokemonName[i];
+        if (searchedName.toLowerCase().includes(search)) {
+            addSearchedCard(i);
         }
     }
+}
+
+function addSearchedCard(i) {
+    showCards(i, pokeImgs[i], typeOneS[i]);
+    addBgColor(typeOneS[i], i);
+    document.getElementById('load-more-btn').classList.add('d-none');
+}
+
+function emptyInput() {
+    document.getElementById('search').value = '';
+    setSearchVaribles();
 }
 
 // ================================================================== Load more Button 
 async function loadMore() {
     document.getElementById('load-more-btn').classList.add('d-none');
-    for (let i = amountsShowing; i < amountsShowing + 100; i++) {
+    for (let i = amountsShowing; i < allAmounts; i++) {
         await RenderPokemonInfo(i);
     }
-    amountsShowing += 20;
-
-    document.getElementById('load-more-pokemon-btn').classList.remove('d-none');
+    // amountsShowing += 20;
 }
 
 
@@ -38,15 +59,17 @@ function removeHeart(i) {
 
 // ================================================================== next / previous Pokemon 
 function next(i) {
-    openCard(i + 1);
-    if (i > amountsShowing) {
-        i = 0;
+    if (i == 119) {
+        document.getElementById('arrow-right').disabled = true;
+    } else {
+        openCard(i + 1);
     }
 }
 
 function previous(i) {
     if (i == 0) {
-        i = 4;
+        document.getElementById('arrow-left').disabled = true;
+    } else {
+        openCard(i - 1);
     }
-    openCard(i - 1);
 }

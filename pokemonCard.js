@@ -14,7 +14,7 @@ function addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg) {
     return `
     <div onclick="closeCard()" class="close-container"></div>
    <div id="single-card">
-    <img src="img/arrow-left.png" class="arrow" id="arrow-left" onclick="previous(${i}, ${pokeID[i]}, '${pokemonName[i]}', '${typeOne}')">
+    <button class="arrow" id="arrow-left" onclick="previous(${i}, ${pokeID[i]}, '${pokemonName[i]}', '${typeOne}')"></button>
         <div id="open-cards${i}" class="z-index">
             <div class="card-top">
                 <img src="img/grey-heart.png" class="card-icon" onclick="addHeart(${i})">
@@ -35,7 +35,7 @@ function addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg) {
                 </div>
             </div>
         </div>
-    <img src="img/arrow-right.png" class="arrow" id="arrow-right" onclick="next(${i}, ${i}, ${pokeID}, '${pokemonName[i]}', '${typeOne}')">
+    <button class="arrow" id="arrow-right" onclick="next(${i}, ${i}, ${pokeID}, '${pokemonName[i]}', '${typeOne}')"></button>
 
     </div>`;
 }
@@ -85,7 +85,7 @@ function scaleDown(x) {
 // ================================================================== about / strengths 
 function showAboutPokemon(i, height, weight, ability, habitat) {
     document.getElementById(`strengths-text${i}`).style.backgroundColor = "";
-    document.getElementById(`about-strengths-field${i}`).innerHTML = addAboutContent(i, height, weight, ability, habitat);
+    document.getElementById(`about-strengths-field${i}`).innerHTML = addAboutContent(height, weight, ability, habitat);
     document.getElementById(`about-text${i}`).style.backgroundColor = "rgba(255, 255, 255, 0.05)";
 }
 
@@ -112,7 +112,7 @@ async function getHabitat(i) {
     return habitat;
 }
 
-function addAboutContent(i, height, weight, ability, habitat) {
+function addAboutContent(height, weight, ability, habitat) {
     return `
         <div class="about-filled-content">
             <p>Height:<span>${height}0 cm</span></p>
@@ -207,12 +207,7 @@ function closeCard() {
     document.getElementById('body').classList.remove('overflow');
 }
 
-// function loadMore() {
-//     let amountsShowing = 50;
-//     for (let i = 0; i < amountsShowing; i++) {
-//         renderPokemonInfo(i);
-//     }
-// }
+
 
 
 

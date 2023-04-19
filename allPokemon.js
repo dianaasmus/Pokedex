@@ -1,8 +1,9 @@
 let pokedexJSON = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
-let pokemon = []; //
+let pokemon = []; 
 let pokeID = [];
 let currentPokemon;
 let amountsShowing = 20;
+let allAmounts = 120;
 let pokemonName = [];
 let pokeImgs = [];
 let typeOneS = [];
@@ -19,9 +20,9 @@ async function loadPokeJSON() {
     return pokedexJson;
 }
 
-function renderPokemonInfo() {
+async function renderPokemonInfo() {
     for (let i = 0; i < amountsShowing; i++) {
-        RenderPokemonInfo(i);
+        await RenderPokemonInfo(i);
     }
 }
 
