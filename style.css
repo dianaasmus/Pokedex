@@ -100,6 +100,28 @@ h3 {
     height: 90px;
 }
 
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button button {
+    margin: 20px;
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.button button:hover {
+    background-color: white;
+    color: black;
+}
+
  /* ================================================================== single Card  */
 #single-card {
     position: fixed;

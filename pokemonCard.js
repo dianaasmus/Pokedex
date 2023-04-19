@@ -207,8 +207,12 @@ function closeCard() {
     document.getElementById('body').classList.remove('overflow');
 }
 
-
-
+// function loadMore() {
+//     let amountsShowing = 50;
+//     for (let i = 0; i < amountsShowing; i++) {
+//         renderPokemonInfo(i);
+//     }
+// }
 
 
 

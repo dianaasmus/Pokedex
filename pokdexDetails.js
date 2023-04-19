@@ -16,8 +16,15 @@ function searchPokemon() {
 }
 
 // ================================================================== Load more Button 
+async function loadMore() {
+    document.getElementById('load-more-btn').classList.add('d-none');
+    for (let i = amountsShowing; i < amountsShowing + 100; i++) {
+        await RenderPokemonInfo(i);
+    }
+    amountsShowing += 20;
 
-
+    document.getElementById('load-more-pokemon-btn').classList.remove('d-none');
+}
 
 
 // ================================================================== add heart
@@ -32,14 +39,14 @@ function removeHeart(i) {
 // ================================================================== next / previous Pokemon 
 function next(i) {
     openCard(i + 1);
-    if (i > showTwenty) {
+    if (i > amountsShowing) {
         i = 0;
     }
 }
 
 function previous(i) {
-    openCard(i - 1);
-    if (i < showTwenty) {
-        i = 0;
+    if (i == 0) {
+        i = 4;
     }
+    openCard(i - 1);
 }

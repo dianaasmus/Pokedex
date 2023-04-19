@@ -2,7 +2,7 @@ let pokedexJSON = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
 let pokemon = []; //
 let pokeID = [];
 let currentPokemon;
-let showTwenty = 20;
+let amountsShowing = 20;
 let pokemonName = [];
 let pokeImgs = [];
 let typeOneS = [];
@@ -10,27 +10,30 @@ let typeOneS = [];
 
 // load Pokemon Cards
 function init() {
-    loadPokeJSON();
+    renderPokemonInfo();
 }
 
 async function loadPokeJSON() {
     let response = await fetch(pokedexJSON);
     pokedexJson = await response.json();
-    renderPokemonInfo(pokedexJson);
+    return pokedexJson;
 }
 
-async function renderPokemonInfo(pokedexJson) {
-    for (let i = 0; i < showTwenty; i++) {
-        let pokeName = pokedexJson['results'][i]['name'];
-        pokemonName.push(pokeName);
-
-        singlePokemonJSON = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
-        let urlResponse = await fetch(singlePokemonJSON);
-        currentPokemon = await urlResponse.json();
-        pokemon.push(currentPokemon);
-
-        renderPokemon(i);
+function renderPokemonInfo() {
+    for (let i = 0; i < amountsShowing; i++) {
+        RenderPokemonInfo(i);
     }
+}
+
+async function RenderPokemonInfo(i) {
+    pokedexJson = await loadPokeJSON();
+    let pokeName = pokedexJson['results'][i]['name'];
+    pokemonName.push(pokeName);
+    singlePokemonJSON = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
+    let urlResponse = await fetch(singlePokemonJSON);
+    currentPokemon = await urlResponse.json();
+    pokemon.push(currentPokemon);
+    renderPokemon(i);
 }
 
 async function renderPokemon(i) {
