@@ -2,6 +2,7 @@
 function enter(event) {
     if (event.keyCode === 13) {
         setSearchVaribles();
+        document.getElementById('load-more-btn').classList.add('d-none');
     }
 }
 
@@ -30,23 +31,27 @@ async function filterSearchedPokemon(search) {
 function addSearchedCard(i) {
     showCards(i, pokeImgs[i], typeOneS[i]);
     addBgColor(typeOneS[i], i);
-    document.getElementById('load-more-btn').classList.add('d-none');
 }
 
 function emptyInput() {
+    document.getElementById('load-more-btn').classList.remove('d-none');
     document.getElementById('search').value = '';
     setSearchVaribles();
 }
 
 // ================================================================== Load more Button 
 async function loadMore() {
-    document.getElementById('load-more-btn').classList.add('d-none');
-    for (let i = amountsShowing; i < allAmounts; i++) {
-        await RenderPokemonInfo(i);
-    }
-    // amountsShowing += 20;
-}
+    amountsShowing += +61;
+    let load = amountsShowing - 61;
 
+    if (amountsShowing >= 1281) {
+        document.getElementById('load-more-btn').classList.add('d-none');
+    } else {
+        for (let i = load; i < amountsShowing; i++) { // kein: 'amountsShowing + 50;' = undefined !!
+            await RenderPokemonInfo(i);
+        }
+    }
+}
 
 // ================================================================== add heart
 function addHeart(i) {
