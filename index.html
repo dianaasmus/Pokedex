@@ -6,16 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokédex</title>
+
     <link rel="icon" href="img/pokeball.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="allPokemon.js"></script>
     <script src="pokemonCard.js"></script>
     <script src="pokdexDetails.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+
 </head>
 
 <body onload="init()" id="body">
+
 
     <header>
         <h1>Pokédex</h1>
@@ -30,12 +33,11 @@
     <div id="card-container"></div>
     <div class="button"><button id="load-more-btn" onclick="loadMore()">load more</button></div>
 
-    <!-- <footer>
-        <div>
-            <a href="https://github.com/dianaasmus/Pokedex" target="_blank">Github</a> |
-            <a href="https://pokeapi.co/" target="_blank">PokeApi</a>
-        </div>
-    </footer> -->
+    <div>
+        <canvas id="myChart" width="313px"></canvas>
+    </div>
+    <script src="chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

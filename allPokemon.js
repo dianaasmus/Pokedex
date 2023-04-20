@@ -1,5 +1,5 @@
 let pokedexJSON = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
-let pokemon = []; 
+let pokemon = [];
 let pokeID = [];
 let currentPokemon;
 let amountsShowing = 61;
