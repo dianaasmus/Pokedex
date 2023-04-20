@@ -3,13 +3,12 @@ let pokemon = [];
 let pokeID = [];
 let currentPokemon;
 let amountsShowing = 61;
-let load;
 let pokemonName = [];
 let pokeImgs = [];
 let typeOneS = [];
 
 
-// load Pokemon Cards
+// ================================================================== load Pokemon Cards
 function init() {
     renderPokemonInfo();
 }
@@ -83,7 +82,7 @@ function showCards(i, pokeImg, typeOne) {
 }
 
 
-// Card Color 
+// ================================================================== Card Color 
 function addBgColor(type, i) {
     let card = document.getElementById(`card${i}`);
 

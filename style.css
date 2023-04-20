@@ -1,3 +1,4 @@
+/* ================================================================== General */
 body {
     margin: 0;
     background-color: white;
@@ -10,6 +11,15 @@ body {
     width: 100%;
 }
 
+.d-none {
+    display: none !important;
+}
+
+.overflow {
+    overflow-y: hidden;
+}
+
+/* ================================================================== Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -50,11 +60,7 @@ input:focus {
     cursor: pointer;
 }
 
-.d-none {
-    display: none !important;
-}
-
-
+/* ================================================================== All Cards */
 #cards {
     display: flex;
     flex-wrap: wrap;
@@ -120,7 +126,17 @@ h3 {
     color: black;
 }
 
-/* ================================================================== single Card  */
+/* ================================================================== single card 1/2  */
+.close-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: ' ';
+    background-color: rgba(39, 33, 44, 0.8);
+}
+
 #single-card {
     position: fixed;
     top: 0;
@@ -138,31 +154,18 @@ h3 {
     height: 558px;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#arrow-left {
+    background-image: url(img/arrow-left.png);
+    padding-right: 24px;
 }
 
-.close-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    content: ' ';
-    background-color: rgba(39, 33, 44, 0.8);
 
-}
-
-.overflow {
-    overflow-y: hidden;
-}
-
-.open-cards {
-    border-radius: 30px;
-    width: 450px;
-    height: 550px;
+.arrow {
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
 }
 
 .z-index {
@@ -196,17 +199,6 @@ h3 {
     align-items: center;
 }
 
-.poke-details-2 {
-    background-color: rgb(22, 25, 26);
-    width: 450px;
-    height: 400px;
-    margin-top: 98px;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .poke-img-card {
     height: 180px;
     width: 180px;
@@ -229,17 +221,6 @@ h5 {
     padding-top: 20px;
 }
 
-#about {
-    padding-top: 20px;
-    width: 350px;
-    height: 185px;
-}
-
-.about-strengths {
-    display: flex;
-    justify-content: space-evenly;
-}
-
 .type-style-card {
     padding: 10px;
     border: 1px solid white;
@@ -250,24 +231,39 @@ h5 {
     justify-content: center;
 }
 
-
-.arrow {
-    height: 40px;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    background-repeat: no-repeat;
-}
-
-#arrow-left {
-    background-image: url(img/arrow-left.png);
-    padding-right: 24px;
-}
-
 #arrow-right {
     background-image: url(img/arrow-right.png);
     margin-left: 7px;
     padding-right: 20px;
+}
+
+/* ================================================================== single card 2/2  */
+.poke-details-2 {
+    background-color: rgb(22, 25, 26);
+    width: 450px;
+    height: 400px;
+    margin-top: 98px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.open-cards {
+    border-radius: 30px;
+    width: 450px;
+    height: 550px;
+}
+
+#about {
+    padding-top: 20px;
+    width: 350px;
+    height: 185px;
+}
+
+.about-strengths {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 /* about  */
@@ -298,26 +294,15 @@ h5 {
 .about-filled-content p {
     display: flex;
     justify-content: space-between;
-    /* margin-right: 35px; */
 }
 
-/* Footer  */
-footer {
-    /* position: absolute; */
-    left: 0;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 0;
-}
 
-footer div,
-footer a {
-    color: rgb(126, 126, 126);
-}
 
-footer a:hover {
-    color: white;
-}
+
+
+
+
+
+
+
+
