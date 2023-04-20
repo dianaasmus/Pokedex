@@ -1,0 +1,77 @@
+@media (max-width: 500px) {
+    header {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    input {
+        width: 170px;
+    }
+
+    .card {
+        width: 145px;
+        height: 165px;
+    }
+
+    .type-img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .poke-img {
+        right: auto;
+    }
+
+    .resposive-none {
+        display: none;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    #single-card {
+        width: 350px;
+    }
+
+    .open-cards {
+        height: 451px;
+    }
+
+    .poke-details {
+        height: 210px;
+        margin-top: 170px;
+    }
+
+    .poke-details-2 {
+        width: 287px;
+        height: 282px;
+    }
+
+    .poke-img-card {
+        height: 115px;
+        width: 115px;
+        margin-top: -79px;
+        z-index: 1;
+    }
+
+    h5 {
+        font-size: 1.5rem;
+        padding-top: 44px;
+    }
+
+    #about {
+        width: 228px;
+        height: 168px;
+    }
+
+    .about-field {
+        height: 115px;
+        padding: 5px 32px 5px 31px;
+        line-height: 9px;
+    }
+}

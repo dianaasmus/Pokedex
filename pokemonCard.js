@@ -58,7 +58,7 @@ function showAbout(i, pokeImg, pokeName, typeOne) {
                 <div id="about">
                     <div class="about-strengths">
                         <div class="about-text about" id="about-text${i}" onclick="generateAboutInfos(${i})">ABOUT</div>
-                        <div class="about-text" id="strengths-text${i}" onclick="showStrengthsPokemon(${i})">STRENGTHS</div>
+                        <div class="about-text" id="strengths-text${i}" onclick="showStrengthsPokemon(${i})">STATS</div>
                     </div>
                     <div class="about-field" id="about-strengths-field${i}"></div>
                 </div>

@@ -73,7 +73,7 @@ function showCards(i, pokeImg, typeOne) {
                 <h3>${pokemonName[i]}</h3>
             </div>
             <div class="type-img">
-                <div>
+                <div class="resposive-none">
                     <p class="type-style">${typeOne}</p>
                     <p id="type-two${i}"></p>
                 </div>
