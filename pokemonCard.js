@@ -1,8 +1,6 @@
 let statHPs = [];
 let statAttacks = [];
 let statDefenses = [];
-let statSpecialAttacks = [];
-let statspecialDefenses = [];
 let statSpeeds = [];
 
 // ================================================================== Show Card
@@ -109,15 +107,34 @@ function addChart(i) {
         <canvas id="myChart"></canvas>
     </div>
     `;
+
+    setChart(i);
+}
+
+function setChart(i) {
     let ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['HP', 'Attack', 'Defense', 'S Attack', 'S Defence', 'Speed'],
+            labels: ['HP', 'Attack', 'Defense', 'Speed'],
             datasets: [{
-                label: '# of Votes',
-                data: [8, 19, 3, 5, 2, 3],
+                label: '# values in percent',
+                data: [statHPs[i], statAttacks[i], statDefenses[i], statSpeeds[i]],
+                borderWidth: 1,
+                fill: false,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)'
+                ],
                 borderWidth: 1
             }]
         },

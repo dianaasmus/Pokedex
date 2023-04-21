@@ -234,15 +234,16 @@ h5 {
 #myChart {
     display: block;
     box-sizing: border-box;
-    height: 180px;
-    width: 323px;
+    height: 201px;
+    width: 335px;
+    margin-top: 30px;
 }
 
 .chart {
-    margin-left: -28px;
+    margin-left: -36px;
     height: 180px;
     width: 323px;
-    margin-top: 10px;
+    margin-top: -15px;
 }
 /* 723 h359 */
 
