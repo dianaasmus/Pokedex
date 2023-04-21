@@ -1,3 +1,10 @@
+let statHPs = [];
+let statAttacks = [];
+let statDefenses = [];
+let statSpecialAttacks = [];
+let statspecialDefenses = [];
+let statSpeeds = [];
+
 // ================================================================== Show Card
 function openCard(i, pokeImg, typeOne) {
     let cardContainer = document.getElementById('card-container');
@@ -98,34 +105,28 @@ function showStrengthsPokemon(i) {
 
 function addChart(i) {
     document.getElementById(`about-strengths-field${i}`).innerHTML = `
-    <div>
-        <canvas id="myChart" style="width: 313px;margin-left: -23px;"></canvas>
+    <div class="chart">
+        <canvas id="myChart"></canvas>
     </div>
-    <script src="chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     `;
+    let ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['HP', 'Attack', 'Defense', 'S Attack', 'S Defence', 'Speed'],
+            datasets: [{
+                label: '# of Votes',
+                data: [8, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+        }
+    });
 }
 
-// let ctx = document.getElementById('myChart').getContext('2d'); 
-
-// new Chart(ctx, {
-//     type: 'doughnut',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: [12, 19, 3, 5, 2, 3],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
 
 async function generateAboutInfos(i) {
     let height = pokemon[i]['height'];

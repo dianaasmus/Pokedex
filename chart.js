@@ -1,12 +1,12 @@
-let ctx = document.getElementById('myChart').getContext('2d'); 
+let ctx = document.getElementById('myChart'); 
 
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['HP', 'Attack', 'Defense', 'S Attack', 'S Defence', 'Speed'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: [statHPs[17], 19, 3, 5, 2, 3],
             borderWidth: 1
         }]
     },

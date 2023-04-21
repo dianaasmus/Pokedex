@@ -52,7 +52,27 @@ function loadVariables(i) {
     pokeImgs.push(pokeImg);
     let typeOne = pokemon[i]['types'][0]['type']['name'];
     typeOneS.push(typeOne);
+    setStats(i);
     return { pokeImg, typeOne };
+}
+
+function setStats(i) {
+    let statHP = pokemon[i]['stats'][0]['base_stat'];
+    let statAttack = pokemon[i]['stats'][1]['base_stat'];
+    let statDefense = pokemon[i]['stats'][2]['base_stat'];
+    let statSpecialAttack = pokemon[i]['stats'][3]['base_stat'];
+    let statspecialDefense = pokemon[i]['stats'][4]['base_stat'];
+    let statSpeed = pokemon[i]['stats'][5]['base_stat'];
+    pushStats(statHP, statAttack, statDefense, statSpecialAttack, statspecialDefense, statSpeed);
+}
+
+function pushStats(statHP, statAttack, statDefense, statSpecialAttack, statspecialDefense, statSpeed) {
+    statHPs.push(statHP);
+    statAttacks.push(statAttack);
+    statDefenses.push(statDefense);
+    statSpecialAttacks.push(statSpecialAttack);
+    statspecialDefenses.push(statspecialDefense);
+    statSpeeds.push(statSpeed);
 }
 
 function typeTwoExists(i) {
