@@ -74,4 +74,19 @@
         padding: 5px 32px 5px 31px;
         line-height: 9px;
     }
+
+    #myChart {
+        display: block;
+        box-sizing: border-box;
+        height: 123px;
+        width: 227px;
+        margin-top: 10px;
+    }
+
+    .chart {
+        margin-left: -32px;
+        height: 111px;
+        width: 323px;
+        margin-top: -15px;
+    }
 }
