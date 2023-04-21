@@ -216,6 +216,20 @@ h5 {
     padding-top: 30px;
 }
 
+#myChart {
+    display: block;
+    box-sizing: border-box;
+    height: 201px;
+    width: 335px;
+    margin-top: 30px;
+}
+
+.chart {
+    margin-left: -36px;
+    height: 180px;
+    width: 323px;
+}
+
 .card-type {
     display: flex;
     padding-top: 20px;
@@ -229,20 +243,6 @@ h5 {
     font-size: 15px;
     display: flex;
     justify-content: center;
-}
-
-#myChart {
-    display: block;
-    box-sizing: border-box;
-    height: 201px;
-    width: 335px;
-    margin-top: 30px;
-}
-
-.chart {
-    margin-left: -36px;
-    height: 180px;
-    width: 323px;
 }
 
 #arrow-right {
@@ -309,14 +309,3 @@ h5 {
     display: flex;
     justify-content: space-between;
 }
-
-
-
-
-
-
-
-
-
-
-

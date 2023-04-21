@@ -64,17 +64,6 @@
         padding-top: 44px;
     }
 
-    #about {
-        width: 228px;
-        height: 168px;
-    }
-
-    .about-field {
-        height: 115px;
-        padding: 5px 32px 5px 31px;
-        line-height: 9px;
-    }
-
     #myChart {
         display: block;
         box-sizing: border-box;
@@ -89,4 +78,16 @@
         width: 323px;
         margin-top: -15px;
     }
+
+    #about {
+        width: 228px;
+        height: 168px;
+    }
+
+    .about-field {
+        height: 115px;
+        padding: 5px 32px 5px 31px;
+        line-height: 9px;
+    }
+
 }
