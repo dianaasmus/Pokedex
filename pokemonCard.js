@@ -6,8 +6,12 @@ let statSpeeds = [];
 // ================================================================== Show Card
 function openCard(i, pokeImg, typeOne) {
     let cardContainer = document.getElementById('card-container');
-    document.getElementById('body').classList.add('overflow');
+    document.body.classList.add('overflow');
     cardContainer.innerHTML = addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg);
+    if (i == 0) {
+        document.getElementById('arrow-left').classList.add('d-none');
+        document.getElementById('single-card').style.left = "31px";
+    }
     addCardBgColor(i, typeOne);
     addpokeNumber(i);
     if (typeTwoExists(i)) {
@@ -46,15 +50,17 @@ function addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg) {
 }
 
 function scaleUpPokemon(x) {
-    x.style.transform = "scale(1.05)";
+    x.style.transform = "scale(1.10)";
 }
 
 function scaleDownPokemon(x) {
     x.style.transform = "scale(1)";
+    x.style.transition = "transform 225ms ease-in-out";
 }
 
 function showAbout(i, pokeImg, pokeName, typeOne) {
-    document.getElementById(`poke-details${i}`).innerHTML = `
+    let card = document.getElementById(`poke-details${i}`);
+    card.innerHTML = `
         <div class="poke-details-2">
                 <img src="${pokeImgs[i]}" class="poke-img-card" onclick="openCard(${i}, '${pokeImg}', '${typeOne}')" onmouseover="scaleUpPokemon(this)" onmouseout="scaleDownPokemon(this)">
                 <div class="poke-name">
@@ -80,7 +86,7 @@ function renderTypeTwoInCard(i) {
 
 // ================================================================== Hover
 function scaleUp(x) {
-    x.style.transform = "scale(1.05)";
+    x.style.transform = "scale(1.07)";
 }
 
 function scaleDown(x) {
@@ -107,7 +113,6 @@ function addChart(i) {
         <canvas id="myChart"></canvas>
     </div>
     `;
-
     setChart(i);
 }
 
@@ -117,9 +122,12 @@ function setChart(i) {
     new Chart(ctx, {
         type: 'bar',
         data: {
+            legend: {
+                display: false,  
+            },
             labels: ['HP', 'Attack', 'Defense', 'Speed'],
             datasets: [{
-                label: '# values in percent',
+                labels: false,
                 data: [statHPs[i], statAttacks[i], statDefenses[i], statSpeeds[i]],
                 borderWidth: 1,
                 fill: false,
@@ -176,61 +184,62 @@ function addAboutContent(height, weight, ability, habitat) {
 function addCardBgColor(i) {
     let singlecard = document.getElementById(`open-cards${i}`);
 
-    if (typeOneS[i] == 'grass') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(63, 121, 82)";
+    switch (typeOneS[i]) {
+        case 'grass':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(63, 121, 82)";
+            break;
+        case 'fire':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(252, 108, 110)";
+            break;
+        case 'water':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(132, 199, 254)";
+            break;
+        case 'electric':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(254, 218, 120)";
+            break;
+        case 'normal':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(183, 183, 170)";
+            break;
+        case 'fighting':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(177, 82, 71)";
+            break;
+        case 'flying':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(121, 168, 241)";
+            break;
+        case 'poison':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(156, 88, 148)";
+            break;
+        case 'ground':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(236, 206, 89)";
+            break;
+        case 'rock':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(205, 189, 114)";
+            break;
+        case 'bug':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(196, 207, 34)";
+            break;
+        case 'ghost':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(116, 114, 213)";
+            break;
+        case 'psychic':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(249, 95, 173)";
+            break;
+        case 'ice':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(150, 242, 255)";
+            break;
+        case 'dragon':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(117, 103, 201)";
+            break;
+        case 'dark':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(143, 106, 88)";
+            break;
+        case 'steel':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(196, 195, 217)";
+            break;
+        case 'fairy':
+            singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(249, 177, 254)";
+            break;
     }
-    if (typeOneS[i] == 'fire') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(252, 108, 110)";
-    }
-    if (typeOneS[i] == 'water') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(132, 199, 254)";
-    }
-    if (typeOneS[i] == 'electric') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(254, 218, 120)";
-    }
-    if (typeOneS[i] == 'normal') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(183, 183, 170)";
-    }
-    if (typeOneS[i] == 'fighting') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(177, 82, 71)";
-    }
-    if (typeOneS[i] == 'flying') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(121, 168, 241)";
-    }
-    if (typeOneS[i] == 'poison') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(156, 88, 148)";
-    }
-    if (typeOneS[i] == 'ground') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(236, 206, 89)";
-    }
-    if (typeOneS[i] == 'rock') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(205, 189, 114)";
-    }
-    if (typeOneS[i] == 'bug') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(196, 207, 34)";
-    }
-    if (typeOneS[i] == 'ghost') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(116, 114, 213)";
-    }
-    if (typeOneS[i] == 'psychic') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(249, 95, 173)";
-    }
-    if (typeOneS[i] == 'ice') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(150, 242, 255)";
-    }
-    if (typeOneS[i] == 'dragon') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(117, 103, 201)";
-    }
-    if (typeOneS[i] == 'dark') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(143, 106, 88)";
-    }
-    if (typeOneS[i] == 'steel') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(196, 195, 217)";
-    }
-    if (typeOneS[i] == 'fairy') {
-        singlecard.style.backgroundImage = "linear-gradient( rgb(22, 25, 26), rgb(249, 177, 254)";
-    }
-
     singlecard.classList.add('open-cards');
 }
 
@@ -253,7 +262,7 @@ function addpokeNumber(i) {
 
 function closeCard() {
     document.getElementById('card-container').innerHTML = '';
-    document.getElementById('body').classList.remove('overflow');
+    document.body.classList.remove('overflow');
 }
 
 

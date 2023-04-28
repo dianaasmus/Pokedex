@@ -1,3 +1,4 @@
+let favPokemonS = [];
 // ================================================================== search 
 function enter(event) {
     if (event.keyCode === 13) {
@@ -55,7 +56,24 @@ async function loadMore() {
 
 // ================================================================== add heart
 function addHeart(i) {
-    document.getElementById(`heart${i}`).classList.remove('d-none');
+    let favPokemon = document.getElementById(`heart${i}`);
+    favPokemon.classList.remove('d-none');
+    saveHeart(i, favPokemon);
+}
+
+function saveHeart(i, favPokemon) {
+    if (favPokemon) {
+        favPokemonS.push(favPokemon);
+    }
+    let favPokemonArray = JSON.stringify(favPokemonS);
+    localStorage.setItem('Favorites', favPokemonArray);
+}
+
+function loadHeart() {
+    let favPokemonArray = localStorage.getItem('Favorites');
+    if (favPokemonS) {
+        favPokemonS = JSON.parse(favPokemonArray);
+    }
 }
 
 function removeHeart(i) {
@@ -64,17 +82,32 @@ function removeHeart(i) {
 
 // ================================================================== next / previous Pokemon 
 function next(i) {
-    if (i == 119) {
-        document.getElementById('arrow-right').disabled = true;
+    i++;
+
+    if (i <= 1281) {
+        openCard(i);
+        
     } else {
-        openCard(i + 1);
+        document.getElementById('arrow-right').classList.add('d-none');
+        document.getElementById('single-card').style.right = "33px";
     }
 }
 
 function previous(i) {
-    if (i == 0) {
-        document.getElementById('arrow-left').disabled = true;
+    i--;
+
+    if (i >= 1) {
+        openCard(i);
     } else {
-        openCard(i - 1);
+        openCard(i);
+        document.getElementById('arrow-left').classList.add('d-none');
+        document.getElementById('single-card').style.left = "31px";
     }
+}
+
+// loader 
+function removeLoader() {
+    let loadingPage = document.getElementById("loading-page");
+    loadingPage.classList.add('d-none');
+    document.body.classList.remove('overflow');
 }
