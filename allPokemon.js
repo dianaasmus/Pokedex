@@ -11,6 +11,7 @@ let typeOneS = [];
 // ================================================================== load Pokemon Cards
 function init() {
     renderPokemonInfo();
+    loadFavPokemon();
 }
 
 async function loadPokeJSON() {

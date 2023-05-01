@@ -5,13 +5,12 @@ let statSpeeds = [];
 
 // ================================================================== Show Card
 function openCard(i, pokeImg, typeOne) {
+    
     let cardContainer = document.getElementById('card-container');
     document.body.classList.add('overflow');
     cardContainer.innerHTML = addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg);
-    if (i == 0) {
-        document.getElementById('arrow-left').classList.add('d-none');
-        document.getElementById('single-card').style.left = "31px";
-    }
+    checkButtons(i);
+    checkFavorites(i);
     addCardBgColor(i, typeOne);
     addpokeNumber(i);
     if (typeTwoExists(i)) {
@@ -26,7 +25,7 @@ function addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg) {
     <button class="arrow" id="arrow-left" onclick="previous(${i}, ${pokeID[i]}, '${pokemonName[i]}', '${typeOne}')"></button>
         <div id="open-cards${i}" class="z-index">
             <div class="card-top">
-                <img src="img/grey-heart.png" class="card-icon" onclick="addHeart(${i})">
+                <img src="img/grey-heart.png" class="card-icon" onclick="addHeart(${i}, '${pokeImg}', '${typeOne}')">
                 <img src="img/white-heart.png" class="card-icon heart d-none" id="heart${i}" onclick="removeHeart(${i})">
                 <h4 id="poke-number${i}"></h4>
             </div>
@@ -47,6 +46,24 @@ function addCardContainer(i, pokeID, pokemonName, typeOne, pokeImg) {
     <button class="arrow" id="arrow-right" onclick="next(${i}, ${i}, ${pokeID}, '${pokemonName[i]}', '${typeOne}')"></button>
 
     </div>`;
+}
+
+function checkButtons(i) {
+    if (i == 0) {
+        document.getElementById('arrow-left').classList.add('d-none');
+        document.getElementById('single-card').style.left = "31px";
+    }
+    if (i == 1281) {
+        document.getElementById('arrow-right').classList.add('d-none');
+        document.getElementById('single-card').style.right = "33px";
+    }
+}
+
+function checkFavorites(i) {
+    if (favPokemonS.includes(i)) {
+        console.log(i);
+        document.getElementById(`heart${i}`).classList.remove('d-none');
+    }
 }
 
 function scaleUpPokemon(x) {
@@ -127,7 +144,7 @@ function setChart(i) {
             },
             labels: ['HP', 'Attack', 'Defense', 'Speed'],
             datasets: [{
-                labels: false,
+                label: false,
                 data: [statHPs[i], statAttacks[i], statDefenses[i], statSpeeds[i]],
                 borderWidth: 1,
                 fill: false,

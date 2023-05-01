@@ -55,25 +55,19 @@ async function loadMore() {
 }
 
 // ================================================================== add heart
-function addHeart(i) {
-    let favPokemon = document.getElementById(`heart${i}`);
-    favPokemon.classList.remove('d-none');
-    saveHeart(i, favPokemon);
-}
-
-function saveHeart(i, favPokemon) {
-    if (favPokemon) {
-        favPokemonS.push(favPokemon);
-    }
+function addHeart(i, pokeImg, typeOne) {
+    favPokemonS.push(i);
     let favPokemonArray = JSON.stringify(favPokemonS);
     localStorage.setItem('Favorites', favPokemonArray);
+    
+    let favPokemon = document.getElementById(`heart${i}`);
+    favPokemon.classList.remove('d-none');
+    openCard(i, pokeImg, typeOne);
 }
 
-function loadHeart() {
+function loadFavPokemon() {
     let favPokemonArray = localStorage.getItem('Favorites');
-    if (favPokemonS) {
-        favPokemonS = JSON.parse(favPokemonArray);
-    }
+    favPokemonS = JSON.parse(favPokemonArray);
 }
 
 function removeHeart(i) {
@@ -86,7 +80,7 @@ function next(i) {
 
     if (i <= 1281) {
         openCard(i);
-        
+
     } else {
         document.getElementById('arrow-right').classList.add('d-none');
         document.getElementById('single-card').style.right = "33px";
